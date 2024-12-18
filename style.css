@@ -1,0 +1,50 @@
+/* CSS untuk styling dasar game */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #eeabd0;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  flex-direction: column;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+.game-container {
+  display: flex;
+  justify-content: center;
+}
+
+#tetris {
+  display: grid;
+  grid-template-columns: repeat(10, 30px);
+  grid-template-rows: repeat(20, 30px);
+  gap: 1px;
+  background-color: #ffffff;
+  border: 2px solid #444;
+}
+
+.block {
+  width: 30px;
+  height: 30px;
+  background-color: #444;
+}
+
+.active {
+  background-color: #848bec;
+}
+
+#score-board {
+  margin-left: 20px;
+  color: white;
+}
+
+#score-board p {
+  margin: 5px 0;
+  font-size: 18px;
+}

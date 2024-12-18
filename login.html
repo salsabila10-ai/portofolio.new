@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unique Login Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(135deg, #f387b9, #fadcf3);
+    }
+
+    .login-container {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      padding: 50px;
+      width: 350px;
+      text-align: center;
+    }
+
+    .login-container h2 {
+      margin-bottom: 20px;
+      font-size: 24px;
+      color: #333;
+    }
+
+    .login-container .input-field {
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .login-container .input-field input {
+      width: 80%;
+      padding: 12px 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      outline: none;
+      font-size: 16px;
+      transition: border-color 0.3s;
+    }
+
+    .login-container .input-field input:focus {
+      border-color: #4facfe;
+    }
+
+    .login-container .input-field label {
+      position: absolute;
+      top: 50%;
+      left: 16px;
+      transform: translateY(-50%);
+      background: #fff;
+      padding: 0 4px;
+      font-size: 14px;
+      color: #888;
+      pointer-events: none;
+      transition: top 0.3s, font-size 0.3s;
+    }
+
+    .login-container .input-field input:focus + label,
+    .login-container .input-field input:not(:placeholder-shown) + label {
+      top: -8px;
+      font-size: 12px;
+      color: #4facfe;
+    }
+
+    .login-container button {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, #4facfe, #00f2fe);
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .login-container button:hover {
+      transform: scale(1.05);
+    }
+
+    .login-container .footer-text {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #888;
+    }
+
+    .login-container .footer-text a {
+      color: #4facfe;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .login-container .footer-text a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+<div class="login-container">
+  <h2>Welcome Back!</h2>
+  <form action="#" method="POST">
+    <div class="input-field">
+      <input type="email" id="email" name="email" placeholder=" " required>
+      <label for="email">Email Address</label>
+    </div>
+    <div class="input-field">
+      <input type="password" id="password" name="password" placeholder=" " required>
+      <label for="password">Password</label>
+    </div>
+    <button type="submit">Login</button>
+    <div class="footer-text">
+      Don't have an account? <a href="#">Sign Up</a>
+    </div>
+  </form>
+</div>
+
+</body>
+</html>

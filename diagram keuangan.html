@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagram Laporan Keuangan</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        canvas {
+            margin: 20px auto;
+            display: block;
+            border: 1px solid #ccc;
+        }
+        h1 {
+            color: #333;
+        }
+        .legend {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .legend div {
+            margin: 0 10px;
+            display: flex;
+            align-items: center;
+        }
+        .legend div span {
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            margin-right: 5px;
+        }
+        .income {
+            background-color: #2ecc71;
+        }
+        .expenses {
+            background-color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+    <h1>Diagram Laporan Keuangan</h1>
+    <p>Visualisasi pemasukan dan pengeluaran bulanan</p>
+    <canvas id="financeChart" width="800" height="400"></canvas>
+    <div class="legend">
+        <div><span class="income"></span>Pemasukan</div>
+        <div><span class="expenses"></span>Pengeluaran</div>
+    </div>
+
+    <script>
+        // Data laporan keuangan
+        const financialData = {
+            months: ["Januari", "Februari", "Maret", "April", "Mei"],
+            income: [5000000, 7000000, 8000000, 7500000, 9000000],
+            expenses: [4000000, 5000000, 6000000, 5500000, 7000000],
+        };
+
+        // Warna batang
+        const colors = {
+            income: "#2ecc71", // Hijau untuk pemasukan
+            expenses: "#e74c3c", // Merah untuk pengeluaran
+        };
+
+        const canvas = document.getElementById("financeChart");
+        const ctx = canvas.getContext("2d");
+
+        function drawChart(ctx, data) {
+            const { months, income, expenses } = data;
+            const chartWidth = canvas.width - 100;
+            const chartHeight = canvas.height - 100;
+            const barWidth = chartWidth / (months.length * 2) - 10;
+            const maxValue = Math.max(...income, ...expenses);
+            const scale = chartHeight / maxValue;
+
+            // Gambar sumbu X dan Y
+            ctx.beginPath();
+            ctx.moveTo(50, 20);
+            ctx.lineTo(50, chartHeight + 20);
+            ctx.lineTo(chartWidth + 50, chartHeight + 20);
+            ctx.strokeStyle = "#333";
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+            // Gambar batang pemasukan dan pengeluaran
+            months.forEach((month, index) => {
+                const incomeHeight = income[index] * scale;
+                const expenseHeight = expenses[index] * scale;
+                const xIncome = 60 + index * (2 * barWidth + 20);
+                const xExpense = xIncome + barWidth;
+                const yIncome = chartHeight + 20 - incomeHeight;
+                const yExpense = chartHeight + 20 - expenseHeight;
+
+                // Batang pemasukan
+                ctx.fillStyle = colors.income;
+                ctx.fillRect(xIncome, yIncome, barWidth, incomeHeight);
+
+                // Batang pengeluaran
+                ctx.fillStyle = colors.expenses;
+                ctx.fillRect(xExpense, yExpense, barWidth, expenseHeight);
+
+                // Teks di atas batang
+                ctx.fillStyle = "#000";
+                ctx.font = "12px Arial";
+                ctx.textAlign = "center";
+                ctx.fillText(`Rp${income[index].toLocaleString()}`, xIncome + barWidth / 2, yIncome - 5);
+                ctx.fillText(`Rp${expenses[index].toLocaleString()}`, xExpense + barWidth / 2, yExpense - 5);
+
+                // Label bulan
+                ctx.fillText(month, xIncome + barWidth, chartHeight + 40);
+            });
+        }
+
+        drawChart(ctx, financialData);
+    </script>
+</body>
+</html>
